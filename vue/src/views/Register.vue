@@ -9,7 +9,7 @@
         <form @submit="register">
 
             <div class="form-group row">
-                <label for="name" class="col-md-4 col-form-label text-md-right">Name</label>
+                <label for="name" class="col-md-4 col-form-label text-md-right">Nom complet</label>
 
                 <div class="col-md-6">
                     <input v-model="user.name" id="name" type="text" class="form-control" name="name" required autocomplete="name" autofocus>
@@ -17,7 +17,7 @@
             </div>
 
             <div class="form-group row">
-                <label for="email" class="col-md-4 col-form-label text-md-right">Addresse email</label>
+                <label for="email" class="col-md-4 col-form-label text-md-right">Adresse email</label>
 
                 <div class="col-md-6">
                     <input v-model="user.email" id="email" type="email" class="form-control" name="email" required autocomplete="email" autofocus>
