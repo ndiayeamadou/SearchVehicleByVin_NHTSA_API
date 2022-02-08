@@ -6,7 +6,15 @@
     </div>
 
     <div class="card-body">
-        <form method="" action="">
+        <form @submit="register">
+
+            <div class="form-group row">
+                <label for="name" class="col-md-4 col-form-label text-md-right">Name</label>
+
+                <div class="col-md-6">
+                    <input v-model="user.name" id="name" type="text" class="form-control" name="name" required autocomplete="name" autofocus>
+                </div>
+            </div>
 
             <div class="form-group row">
                 <label for="email" class="col-md-4 col-form-label text-md-right">Addresse email</label>
@@ -28,7 +36,7 @@
                 <label for="password_confirmation" class="col-md-4 col-form-label text-md-right">Confirmation mot de passe</label>
 
                 <div class="col-md-6">
-                    <input v-model="user.password_confirmation" id="password_confirmation" type="password_confirmation" class="form-control" name="password_confirmation" required autocomplete="current-password_confirmation">
+                    <input v-model="user.password_confirmation" id="password_confirmation" type="password" class="form-control" name="password_confirmation" required autocomplete="current-password_confirmation">
                 </div>
             </div>
 
@@ -45,9 +53,21 @@
 </template>
 
 <script setup>
+import store from '../store'
+import { useRouter } from 'vue-router'
 
 const user =  {
-  email: '', password: '', password_confirmation: ''
+  name: '', email: '', password: '', password_confirmation: ''
+}
+const router = useRouter()
+
+function register(ev) {
+  ev.preventDefault()
+  store.dispatch('register', user).then((res)=> {
+    router.push({
+      name: 'Dashboard'
+    })
+  })
 }
 
 </script>
