@@ -6,13 +6,13 @@
     </div>
 
     <div class="card-body">
-        <form method="" action="">
+        <form @submit="login">
 
             <div class="form-group row">
                 <label for="email" class="col-md-4 col-form-label text-md-right">Adresse email</label>
 
                 <div class="col-md-6">
-                    <input id="email" type="email" class="form-control" name="email" value="" required autocomplete="email" autofocus>
+                    <input v-model="user.email" id="email" type="email" class="form-control" name="email" required autocomplete="email" autofocus>
                 </div>
             </div>
 
@@ -20,14 +20,14 @@
                 <label for="password" class="col-md-4 col-form-label text-md-right">Mot de passe</label>
 
                 <div class="col-md-6">
-                    <input id="password" type="password" class="form-control" name="password" required autocomplete="current-password">
+                    <input v-model="user.password" id="password" type="password" class="form-control" name="password" required autocomplete="current-password">
                 </div>
             </div>
 
             <div class="form-group row">
                 <div class="col-md-6 offset-md-4">
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="remember" id="remember">
+                        <input v-model="user.remember" class="form-check-input" type="checkbox" name="remember" id="remember">
 
                         <label class="form-check-label" for="remember">
                             Se souvenir de moi
@@ -48,8 +48,22 @@
   </div>
 </template>
 
-<script>
-export default {
-  
-}
+<script setup>
+    import { useRouter } from 'vue-router'
+    import store from '../store'
+
+    const router = useRouter()
+    const user = {
+        email: '', password: '', remember: false
+    }
+    function login(ev) {
+        ev.preventDefault()
+        store.dispatch('login', user)
+            .then((res)=> {
+                router.push({
+                    name: 'Dashboard'
+                })
+            })
+    }
+
 </script>
