@@ -46,7 +46,7 @@ class AuthController extends Controller
 
         if(!Auth::attempt($credentials, $remember)) {
             return response([
-                'error' => 'Les paramètres de connexion fournis sont corrects.'
+                'error' => 'Les paramètres de connexion fournis sont incorrects.'
             ], 422);
         }
 
@@ -57,6 +57,19 @@ class AuthController extends Controller
             'user'  =>  $user,
             'token' =>  $token
         ]);
+    }
+
+    public function logout() {
+
+        /** @var User $user */
+
+        $user = Auth::user();
+        $user->currentAccessToken()->delete();
+
+        return response([
+            'success' => true
+        ]);
+
     }
 
 }

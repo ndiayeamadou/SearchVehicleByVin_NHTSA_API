@@ -51,17 +51,31 @@
 <script setup>
     import { useRouter } from 'vue-router'
     import store from '../store'
+    import { ref } from "vue"
+    import swal from 'sweetalert'
 
     const router = useRouter()
     const user = {
         email: '', password: '', remember: false
     }
+
+    let errorMsg = ref('')
+
     function login(ev) {
         ev.preventDefault()
+
         store.dispatch('login', user)
-            .then((res)=> {
+            .then( ()=> {
                 router.push({
                     name: 'Dashboard'
+                })
+            }).catch(err => {
+                errorMsg.value = err.response.data.error
+                //swal("Error", errorMsg.value, "error")
+                swal({
+                    title: "Erreur. Veuillez fournir les bonnes informations.",
+                    text: errorMsg.value,
+                    icon: "error"
                 })
             })
     }
