@@ -7,6 +7,7 @@ const store = createStore({
             data: {},
             token: sessionStorage.getItem("TOKEN")
         },
+        keyword: ''
     },
 
     getters: {},
@@ -32,6 +33,13 @@ const store = createStore({
                 commit('logout')
                 return response
             })
+        },
+        rechercher({commit}, keyword) {
+            return axiosClient.get(`/vehicle/search/${keyword}`, {params: { keyword: this.keyword } })
+                .then((response)=> {
+                    commit('rechercher')
+                    return response
+                })
         }
     },
 
@@ -45,6 +53,9 @@ const store = createStore({
             state.user.token = userData.token
             state.user.data = userData.user
             sessionStorage.setItem('TOKEN', userData.token)
+        },
+        rechercher: (state, s) => {
+            state.keyword = s.keyword
         }
     },
 
