@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get("/vehicle/search/{vin}", [VehicleController::class, 'getVehicleByVin']);
+Route::get("/vehicle", [VehicleController::class, 'index']);
 
 Route::get('/', function () {
     return view('welcome');

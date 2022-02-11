@@ -23,6 +23,7 @@ Route::middleware('auth:sanctum')->group(function() {
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::get("/vehicle/search/{vin}", [VehicleController::class, 'getVehicleByVin']);
 });
+Route::get("/vehicle", [VehicleController::class, 'index']);
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);

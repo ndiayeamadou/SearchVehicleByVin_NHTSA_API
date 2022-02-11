@@ -55,4 +55,11 @@ class VehicleController extends Controller
 
     }
 
+    public function index() {
+        $vehicules = Vehicle::all();
+        return response()->json([
+            'data' => $vehicules
+        ]);
+    }
+
 }
