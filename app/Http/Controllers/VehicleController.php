@@ -17,22 +17,25 @@ class VehicleController extends Controller
     */
     public function getVehicleByVin(String $vin) {
         $vehicule = Vehicle::where('vin',$vin)->first();
-        if($vehicule){
+        if($vehicule) {
             //return $vehicule;
-            return response()->json([
+            return response([
                 'error' => 'Ce véhicule existe déjà dans la BDD.',
                 'data'  => $vehicule
             ]);
         }
-        $url= env("BASE_API_URL") . "vehicles/decodevinvaluesextended/".$vin;
+        $url = env("BASE_API_URL") . "vehicles/decodevinvaluesextended/".$vin;
             $options = [
-                'data'=>['format'=>'json'],
-                'headers'=>[
+                'data'      =>  ['format'=>'json'],
+                'headers'   =>  [
                     'Content-Type'=>'application/json'
                 ]
             ];
             $rest = HttpClient::get($url,$options);
-            if($rest){
+            //if($rest) {
+            //dd($rest['Results'][0]);
+            //dd($rest['Results'][0]->ErrorCode);
+            if($rest['Results'][0]->ErrorCode == 0) {
                 $rest=(array)$rest['Results'][0];
                 return Vehicle::create([
                      'vin'=>$vin,
@@ -45,13 +48,9 @@ class VehicleController extends Controller
                      'drive_type'=>$rest['DriveType'],
                      'fuel_type_primary'=>$rest['FuelTypePrimary'],
                  ]);
-            }else{
+            }else {
                 return new Exception("Voiture introuvable !!!");
             }
-
-            return response()->json(
-                []
-            );
 
     }
 

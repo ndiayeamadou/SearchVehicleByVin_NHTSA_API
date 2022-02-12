@@ -1,8 +1,8 @@
 <template>
-  <div class="card">
-    <div class="card-header justify-content-between">
-        <p>Connexion</p>
-        <router-link :to="{name: 'Register'}">S'inscrire gratuitement</router-link>
+  <div class="card mt-5">
+    <div class="card-header d-flex">
+        <p class="col">Connexion</p>
+        <router-link :to="{name: 'Register'}" class="col-auto">S'inscrire gratuitement</router-link>
     </div>
 
     <div class="card-body">

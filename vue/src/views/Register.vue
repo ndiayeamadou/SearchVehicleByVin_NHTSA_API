@@ -1,8 +1,8 @@
 <template>
-  <div class="card">
-    <div class="card-header">
-      <p>Inscription</p>
-      <router-link :to="{name: 'Login'}">Se connecter</router-link>
+  <div class="card mt-5">
+    <div class="card-header d-flex">
+      <p class="col">Inscription</p>
+      <router-link :to="{name: 'Login'}" class="col-auto">Se connecter</router-link>
     </div>
 
     <div class="card-body">

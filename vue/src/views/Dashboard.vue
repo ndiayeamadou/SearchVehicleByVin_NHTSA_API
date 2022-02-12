@@ -1,28 +1,30 @@
 <template>
-  <div class="d-flex mt-5 col-md-6 offset-3">
-      <input v-model="keyword" class="form-control me-2" type="text" placeholder="Rechercher un NIV" aria-label="Search">
-      <button @click="getResult(keyword)" class="btn btn-outline-success" type="submit">Rechercher</button>
-  </div>
-  <div class="mt-5">
-    <div class="table-responsive">
-      <table id="vehicleTable" class="table table-borderer">
-        <thead>
-          <tr>
-            <th>ID</th><th>NIV</th><th>Marque</th><th>Model</th><th>Type de véhicule</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="vehicle in Vehicles">
-            <td>{{ vehicle.id }}</td>
-            <td>{{ vehicle.vin }}</td>
-            <td>{{ vehicle.make }}</td>
-            <td>{{ vehicle.model }}</td>
-            <td>{{ vehicle.vehicle_type }}</td>
-          </tr>
-        </tbody>
-      </table>
-      </div>
+  <div>
+    <div class="d-flex mt-5 col-md-6 offset-3">
+        <input v-model="keyword" class="form-control me-2" type="text" placeholder="Rechercher un NIV" aria-label="Search">
+        <button v-if="keyword!=''" @click="getResult(keyword)" class="btn btn-outline-success" type="submit">Rechercher</button>
     </div>
+    <div class="mt-5">
+        <div class="table-responsive">
+          <table id="vehicleTable" class="table table-striped">
+            <thead>
+              <tr>
+                <th>ID</th><th>NIV</th><th>Marque</th><th>Model</th><th>Type de véhicule</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="vehicle in Vehicles" :key="vehicle.id">
+                <td>{{ vehicle.id }}</td>
+                <td>{{ vehicle.vin }}</td>
+                <td>{{ vehicle.make }}</td>
+                <td>{{ vehicle.model }}</td>
+                <td>{{ vehicle.vehicle_type }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -37,7 +39,7 @@ import axiosClient from '../axios'
 export default {
   data() {
     return {
-      keyword : null,
+      keyword : '',
       Vehicles : []
     }
   },
@@ -52,37 +54,29 @@ export default {
   methods: {
     getResult(vin) {
       axios.get(`http://localhost:8000/vehicle/search/${vin}`, {params: { vin: this.keyword } })
-          .then(()=>{
-            console.log("success");
-            swal({
+           .then((response)=>{
+            /* this.loadVehicles()
+            /*swal({
                 title: "Succès",
                 text: "Les données du véhicule sont bien enregistrées !",
                 icon: "success"
-            })
-            this.loadVehicles()
+            }) */
           })
-          //.then((res => this.Vehicles = res.data))
-          .catch(error => {
-            console.log(error.response.error);
+          /*
+          .catch(err => {
             swal({
               title:  "Note",
-              text:   error.response.data.error,
+              text:   "erreurrrr",
               icon:   "error"
             })
-          })
-    },
-    vehicledtable() {
-      this.$nextTick(()=> {
-        $('#vehicleTable').DataTable()
-      })
+          }) */
     },
     loadVehicles() {
       axiosClient.get('/vehicle')
         .then((response) => {
-          console.log(response.data.data[1]['vin'])
+          //console.log(response.data.data[0]['vin'])
           this.Vehicles = response.data.data
-          $('#vehicleTable').DataTable().destroy()
-          this.vehicledtable()
+          //$('#vehicleTable').DataTable().destroy()
           //$("#vehicleTable").DataTable({
             /* data: response.data.data,
             columns: [
