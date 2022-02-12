@@ -61,4 +61,19 @@ class VehicleController extends Controller
         ]);
     }
 
+    //Test
+    public function store(Request $request) {
+        Vehicle::create([
+            'vin'   =>  $request->vin,
+            'make'   =>  $request->make,
+            'model'   =>  $request->model,
+            'model_year'   =>  $request->model_year,
+            'trim'   =>  $request->trim,
+            'body_class'   =>  $request->body_class,
+            'vehicle_type'   =>  $request->vehicle_type,
+            'drive_type'   =>  $request->drive_type,
+            'fuel_type_primary'   =>  $request->fuel_type_primary
+        ]);
+    }
+
 }

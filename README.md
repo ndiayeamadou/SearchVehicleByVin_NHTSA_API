@@ -52,6 +52,11 @@ Autres avantages : Modèle de lame, Migration des bases de données, Architectur
 * Fonctionne sur tous les navigateurs.
 * Est un framework très complet, et surtout agrémenté d’une très forte communauté.
 
+#### Les améliorations à noter
+* Les contrôles ayant déjà été faits, l'affichage des messages d'erreur ou de notification ne figure pas encore dans certaines pages. Par exemple, en recherchant un véhicule de par un NIV inexistant ou lorsque l'insertion est réussie, un message doit être envoyé.
+* Si un véhicule est enregistré, pas besoin de rafraîchir la page. (Dans l'état actuel de ce projet de test, il faut, après chaque insertion, actualiser la page pour pouvoir voir le dernier enregistrement dans le tableau.)
+* Le design, les boutons d'actions dans le tableau de données (voir, éditer, supprimer)
+
 ## License
 
 The project is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).

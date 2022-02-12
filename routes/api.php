@@ -27,3 +27,6 @@ Route::get("/vehicle", [VehicleController::class, 'index']);
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
+
+// Test
+Route::post("/vehicles", [VehicleController::class, 'store']);
