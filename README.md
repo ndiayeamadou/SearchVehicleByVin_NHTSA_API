@@ -34,6 +34,23 @@ You need to have PHP version **7.3** or above. Node.js version **12.0** or above
 4. Start frontend by running `npm run dev` | *`npm run dev` pour lancer l'application front*
 5. Open http://localhost:3000 | *Ouvrir http://localhost:3000*
 
+### Choix Techniques
+##### #Laravel
+Laravel est une plate-forme open-source qui en fait un choix privilégié pour les entreprises par rapport aux autres. Laravel se compose d'une puissante communauté de développeurs engagés qui fournissent constamment un soutien pour le rendre plus flexible et évolutif.
+L'avantage d'utiliser Laravel comme framework est qu'il offre une sécurité de haut niveau.
+
+L'utilisation de Laravel sécurise les applications Web, car elle ne permet à aucun malware ou menace de sécurité d'entrer dans les applications. Cela signifie également que votre code de développement Web est sûr et sécurisé.
+
+Autres avantages : Modèle de lame, Migration des bases de données, Architecture MVC, etc.
+##### #Vue.JS
+* Le premier avantage de Vue.js est qu’il est très léger.
+* Il est doté d’une grande flexibilité pour la **création d’applications web**.
+* Ce framework est aussi très performant dans son exécution.
+* Il utilise le **langage de programmation informatique JavaScript** qui est très connu des développeurs. Alors si vous rencontrez un problème avec votre appli, vous pouvez faire appel à une communauté d’experts qui se chargera de vous aider.
+##### #Bootstrap
+* Est “Responsive” (s’adapte à la taille de l’écran, que se soit tablette, ordinateur, smartphone, etc.).
+* Fonctionne sur tous les navigateurs.
+* Est un framework très complet, et surtout agrémenté d’une très forte communauté.
 
 ## License
 
